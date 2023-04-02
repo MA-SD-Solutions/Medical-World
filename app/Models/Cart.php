@@ -24,4 +24,14 @@ class Cart extends Model
     {
         return $this->hasMany(Product::class ,'id','product_id');
     }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class ,'id','service_id');
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class ,'id','offer_id');
+    }
 }

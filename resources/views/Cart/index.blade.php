@@ -26,7 +26,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Product Name</th>
+                            <th>Name</th>
                             <th>User Name</th>
                             <th>Added At</th>
                             <th>Control</th>
@@ -36,7 +36,7 @@
                         @foreach ($carts as $cart)
                         <tr>
                             <td>{{ ($carts->currentpage()-1) * $carts->perpage() + $loop->index + 1 }}</td>
-                            <td>{{$cart->products[0]->name ?? ''}}</td>
+                            <td>{{$cart->products[0]->name ?? $cart->services[0]->name ?? $cart->offers[0]->name ?? ''}}</td>
                             <td>{{$cart->users[0]->name ?? ''}}</td>
                             <td>{{$cart->created_at}}</td>
                             <td>

@@ -42,6 +42,7 @@ class CartController extends Controller
             $cart = Cart::create([
                 'product_id' => $request->product_id,
                 'user_id' => $request->user_id,
+                'type' => $request->type,
                 'created_by' => auth()->user()->id
             ]);
 

@@ -171,3 +171,43 @@ Breadcrumbs::for('carts.index', function (BreadcrumbTrail $trail): void {
     $trail->push('Carts', route('carts.index'));
 });
 
+//============ Website =======================
+
+Breadcrumbs::for('website.home', function (BreadcrumbTrail $trail): void {
+    // $trail->parent('Website');
+    $trail->push('Home', route('website.home'));
+});
+
+Breadcrumbs::for('website.aboutUs', function (BreadcrumbTrail $trail): void {
+    $trail->parent('offers.index');
+    $trail->push('aboutUs', route('website.aboutUs'));
+});
+
+Breadcrumbs::for('website.services', function (BreadcrumbTrail $trail): void {
+    $trail->parent('Home');
+    $trail->push('services', route('website.services'));
+});
+
+//============ Contact =======================
+
+Breadcrumbs::for('contact.index', function (BreadcrumbTrail $trail): void {
+    $trail->parent('dashboard');
+    $trail->push('Contacts', route('contact.index'));
+});
+
+//============ offer =======================
+
+Breadcrumbs::for('offers.index', function (BreadcrumbTrail $trail): void {
+    $trail->parent('dashboard');
+    $trail->push('Offers', route('offers.index'));
+});
+
+Breadcrumbs::for('offers.create', function (BreadcrumbTrail $trail): void {
+    $trail->parent('dashboard');
+    $trail->push('Offers', route('offers.create'));
+});
+
+Breadcrumbs::for('offers.show', function (BreadcrumbTrail $trail , $id): void {
+    $trail->parent('offers.index');
+    $trail->push('show Offer', route('offers.show', $id));
+});

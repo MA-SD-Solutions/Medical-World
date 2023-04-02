@@ -6,9 +6,12 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Administration\RoleController;
 use App\Http\Controllers\Administration\PermissionController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SystemController;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Auth;
@@ -24,15 +27,34 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
+
 Route::group(['middleware'=>['auth' , 'verified']], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::get('/profile', 'UserController@profile')->name('profile');
     Route::get('/editProfile/{id}', 'UserController@editProfile')->name('editProfile');
     Route::put('/updateProfile/{user}', 'UserController@updateProfile')->name('updateProfile');
+
+
+    //Website (System)
+
+    Route::get('/home', [SystemController::class , 'home'])->name('system.home');
+    Route::get('/aboutUsPage', [SystemController::class , 'aboutUs'])->name('system.about_us');
+    Route::get('/servicesPage', [SystemController::class , 'service'])->name('system.service');
+    Route::get('/doctorsPage', [SystemController::class , 'doctor'])->name('system.doctor');
+    Route::get('/singleDoctorPage/{id}', [SystemController::class , 'singleDoctor'])->name('system.singleDoctor');
+    Route::get('/singleServicePage/{id}', [SystemController::class , 'singleService'])->name('system.singleService');
+    Route::get('/productsPage', [SystemController::class , 'products'])->name('system.products');
+    Route::get('/singleProduct/{id}', [SystemController::class , 'singleProduct'])->name('system.singleProduct');
+    Route::get('/cart', [SystemController::class , 'cart'])->name('system.cart');
+    Route::get('/contact', [SystemController::class , 'ContactUs'])->name('system.ContactUs');
+    Route::get('/offersPage', [SystemController::class , 'offers'])->name('system.offers');
+    Route::get('/galleryPage', [SystemController::class , 'gallery'])->name('system.gallery');
+
 });
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
-Route::group(['middleware'=>['admin', 'auth' , 'verified']], function () {
+    Route::group(['middleware'=>['admin', 'auth' , 'verified']], function () {
     Route::post('addUser/store', [RegisteredUserController::class, 'store'])->name('storeUser');
     Route::get('addUser', [RegisteredUserController::class, 'create'])->name('addUser');
     Route::resource('users', UserController::class);
@@ -94,8 +116,20 @@ Route::group(['middleware'=>['admin', 'auth' , 'verified']], function () {
     Route::get('carts',[CartController::class,'index'])->name('carts.index');
     // Route::get('create_cart',[CartController::class,'create'])->name('carts.create');
     Route::get('store_cart',[CartController::class,'store'])->name('carts.store');
-    Route::delete('destroy_image/{id}',[CartController::class,'destroy'])->name('carts.destroy');
+    Route::delete('Cart_destroy_image/{id}',[CartController::class,'destroy'])->name('carts.destroy');
 
+    //Contact routes
+    Route::post('createContact',[ContactController::class,'store'])->name('contact.create');
+    Route::get('Contacts',[ContactController::class,'index'])->name('contact.index');
+
+    //offers routes
+    Route::get('offers',[OfferController::class,'index'])->name('offers.index');
+    Route::get('create_offer',[OfferController::class,'create'])->name('offers.create');
+    Route::post('store_offer',[OfferController::class,'store'])->name('offers.store');
+    Route::get('show_offer/{id}',[OfferController::class,'show'])->name('offers.show');
+    // Route::get('offers',[OfferController::class,'edit'])->name('offers.edit');
+    // Route::post('offers',[OfferController::class,'update'])->name('offers.update');
+    Route::delete('delete_offer/{id}',[OfferController::class,'destroy'])->name('offers.destroy');
 });
 
 Route::get('checkout',[CartController::class,'checkout'])->name('carts.checkout');

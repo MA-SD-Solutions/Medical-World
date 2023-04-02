@@ -174,10 +174,28 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('offers.index')}}" class="nav-link {{ request()->is('offers') ? 'active':'' }}">
+                                <i class="nav-icon fas fa-tag "></i>
+                                <p>
+                                    Offers
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a href="{{route('carts.index')}}" class="nav-link {{ request()->is('carts') ? 'active':'' }}">
                                 <i class="nav-icon fas fa-shopping-cart"></i>
                                 <p>
                                     Cart
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{route('contact.index')}}" class="nav-link {{ request()->is('contact') ? 'active':'' }}">
+                                <i class="nav-icon fas fa-envelope"></i>
+                                <p>
+                                    Contact
                                 </p>
                             </a>
                         </li>
