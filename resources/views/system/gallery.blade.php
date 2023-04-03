@@ -111,7 +111,7 @@
             <h3 class="text-center light-primary-color mb-5">Gallery</h3>
         </div>
         <div class="services-gallery py-5">
-            <ul class="nav nav-pills mb-5 d-flex justify-content-center" id="pills-tab" role="tablist">
+            {{-- <ul class="nav nav-pills mb-5 d-flex justify-content-center" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link  active" id="pills-category-1-tab" data-bs-toggle="pill" data-bs-target="#pills-category-1" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
                 </li>
@@ -121,22 +121,25 @@
                 <li class="nav-item " role="presentation">
                     <button class="nav-link text-dark" id="pills-category-3-tab" data-bs-toggle="pill" data-bs-target="#pills-category-3" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
                 </li>
-            </ul>
+            </ul> --}}
             <div class="tab-content" id="pills-tabContent">
-                @foreach ($gallery as $image)
+
                 <div class="tab-pane fade show active" id="pills-category-1" role="tabpanel" aria-labelledby="pills-category-1-tab">
                     <div class="row d-flex justify-content-center ">
-                        <div class="col-lg-5 col-md-6 col-sm-6 mb-4 mb-lg-0 d-flex justify-content-center">
+                        @foreach ($gallery as $image)
+                        <div class="col-lg-4 col-md-6 col-sm-6 mb-4 mb-lg-0 d-flex">
                             {{-- <div class="service-gallery-item"> --}}
-                                <img src="{{$image->getFirstMediaUrl('gallary_image')}}" class="shadow-1-strong rounded mb-4" alt="Boat on Calm Water" width="451" height="300" />
+                              <a href="{{$image->getFirstMediaUrl('gallary_image')}}" target="_blank"><img src="{{$image->getFirstMediaUrl('gallary_image')}}" class="shadow-1-strong rounded mb-4" alt="Boat on Calm Water" width="400" height="300" /></a>
                             {{-- </div> --}}
                         </div>
-                        <hr>
+
                         {{-- <div class="col-lg-5 col-md-10 col-sm-10 mb-4 mb-lg-0 d-flex justify-content-center">
                             <div class="service-gallery-item">
                                 <img src="images/gallery.jpg" class="shadow-1-strong rounded mb-4" alt="Boat on Calm Water" width="451" height="300" />
                             </div>
                         </div> --}}
+                        @endforeach
+                        <hr>
                     </div>
                     {{-- <div class="row d-flex justify-content-center">
                         <div class="col-lg-7 col-md-12 mb-4 mb-lg-0">
@@ -156,7 +159,7 @@
                         </div>
                     </div> --}}
                 </div>
-                @endforeach
+
 
                 {{-- <div class="tab-pane fade" id="pills-category-2" role="tabpanel" aria-labelledby="pills-category-2-tab">
                     <div class="row d-flex justify-content-center ">

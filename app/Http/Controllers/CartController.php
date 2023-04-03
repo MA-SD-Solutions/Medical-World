@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Patient;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -38,18 +39,37 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        $productId = null;
+        $serviceId = null;
+        $offerId = null;
         try{
+            if($request->product_id){
+                $productId=$request->product_id;
+            }
+            if($request->service_id){
+                $serviceId = $request->service_id;
+            }
+            if($request->offer_id){
+                $offerId = $request->offer_id;
+            }
             $cart = Cart::create([
-                'product_id' => $request->product_id,
-                'user_id' => $request->user_id,
+                'product_id' => $productId,
+                'service_id' => $serviceId,
+                'offer_id' => $offerId,
+                'user_id' => auth()->user()->id,
                 'type' => $request->type,
+                'name' => $request->name,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
                 'created_by' => auth()->user()->id
             ]);
 
-            return redirect()->route('carts.index')->with('success' , 'Cart Added Successfully');
+            // return redirect()->route('carts.index')->with('success' , 'Cart Added Successfully');
+            return response()->json(['success ' => 'Added To Cart Successfully'], 200);
         }catch(Exception $ex){
-            return redirect()->back()->with('error' , $ex->getMessage());
-        }
+            // return redirect()->back()->with('error' , $ex->getMessage());
+            return response()->json(['error ' => $ex->getMessage()], 400);
+         }
 
     }
 

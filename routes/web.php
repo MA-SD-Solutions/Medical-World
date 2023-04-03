@@ -115,7 +115,7 @@ Route::get('login', [AuthenticatedSessionController::class, 'create'])
     // Carts routes
     Route::get('carts',[CartController::class,'index'])->name('carts.index');
     // Route::get('create_cart',[CartController::class,'create'])->name('carts.create');
-    Route::get('store_cart',[CartController::class,'store'])->name('carts.store');
+    Route::post('store_cart',[CartController::class,'store'])->name('carts.store');
     Route::delete('Cart_destroy_image/{id}',[CartController::class,'destroy'])->name('carts.destroy');
 
     //Contact routes

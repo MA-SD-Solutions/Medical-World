@@ -27,6 +27,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Type</th>
                             <th>User Name</th>
                             <th>Added At</th>
                             <th>Control</th>
@@ -37,6 +38,7 @@
                         <tr>
                             <td>{{ ($carts->currentpage()-1) * $carts->perpage() + $loop->index + 1 }}</td>
                             <td>{{$cart->products[0]->name ?? $cart->services[0]->name ?? $cart->offers[0]->name ?? ''}}</td>
+                            <td>{{$cart->type ?? ''}}</td>
                             <td>{{$cart->users[0]->name ?? ''}}</td>
                             <td>{{$cart->created_at}}</td>
                             <td>

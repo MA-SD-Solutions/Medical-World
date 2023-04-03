@@ -167,7 +167,7 @@
                                             <h6 class="mb-3 fw-bold fs-5 text-muted">{{$offer->value}}</h6>
                                         </div>
                                         <div class="d-flex">
-                                            <button class="offers-button">BOOK NOW</button>
+                                            <button class="offers-button" id="bookOffer" type="button" onclick="addToCart({{$offer->id}})">BOOK NOW</button>
                                         </div>
                                         </div>
                                     </div>
@@ -191,7 +191,7 @@
           lowerVal = parseInt(lowerSlider.value);
           upperVal = parseInt(upperSlider.value);
 
-          if (upperVal < lowerVal + 4) {
+          if (upperVal <script lowerVal + 4) {
               lowerSlider.value = upperVal - 4;
 
               if (lowerVal == lowerSlider.min) {
@@ -218,7 +218,40 @@
       console.log(lowerVal);
     console.log(upperVal);
     };
+</script>
+<script>
+    function addToCart(offerId) {
 
+                var id = offerId ;
+               var type = 'offer';
+               var qty= 1;
+
+                $.ajax({
+                    url: "{{route('carts.store')}}",
+                    type: "post",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        offer_id: id,
+                        type: type,
+                        quantity:qty
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                        window.location.href = "{{route('system.offers')}}";
+                        // if (result != 0) {
+                        //     $('#code_div').removeClass('d-none');
+                        //     $("#code").val(result.code);
+                        // } else {
+                        //     $('#code_div').addClass('d-none');
+
+                        // }
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
+                });
+            }
 
       </script>
 

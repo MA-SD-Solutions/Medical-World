@@ -145,7 +145,7 @@
                             <h3 class="fs-5 d-inline " id="product-price">{{$service->price}}</h3>
                         </div>
                         <div class="add-cart py-3 ms-5">
-                            <button class="btn primary-button mt-md-1 mb-md-2" type="button" id="bookButton">Book Now</button>
+                            <button class="btn primary-button mt-md-1 mb-md-2" type="button" id="bookButton" onclick="addToCart()">Book Now</button>
                         </div>
                     </div>
 
@@ -269,5 +269,37 @@
             sib[i].classList.add("checked");
         }
     }
+    function addToCart() {
+                var id = {{$service->id}};
+               var type = 'service';
+               var qty= 1;
+
+                $.ajax({
+                    url: "{{route('carts.store')}}",
+                    type: "post",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        service_id: id,
+                        type: type,
+                        quantity:qty
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                        window.location.href = "{{route('system.service')}}";
+                        // if (result != 0) {
+                        //     $('#code_div').removeClass('d-none');
+                        //     $("#code").val(result.code);
+                        // } else {
+                        //     $('#code_div').addClass('d-none');
+
+                        // }
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
+                });
+            }
+
 </script>
 @endsection

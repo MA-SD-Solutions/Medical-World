@@ -418,6 +418,38 @@
               if (cart.products[i].id == product.id) {
                 cart.products[i].quantity = Number(cart.products[i].quantity) + Number(product.quantity) ;
                 console.log("here");
+
+                var id = {{$product->id}};
+                // console.log({{$product->id}});
+                // var price = {{$product->price}};
+                var type = 'product';
+                var qty= document.getElementById('product-quantity').value;
+
+                $.ajax({
+                    url: "{{route('carts.store')}}",
+                    type: "post",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        product_id: id,
+                        type: type,
+                        quantity:qty
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                        window.location.href = "{{route('system.products')}}";
+                        // if (result != 0) {
+                        //     $('#code_div').removeClass('d-none');
+                        //     $("#code").val(result.code);
+                        // } else {
+                        //     $('#code_div').addClass('d-none');
+
+                        // }
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
+                });
               } else {
                 console.log("hereeeeeee");
                 cart.products.push(product);
@@ -426,6 +458,39 @@
           }
           localStorage.setItem("cart", JSON.stringify(cart));
         }
+
+        // $(document).ready(function() {
+        //     $('#addToCartButton').on('click', function() {
+        //        var id = {{$product->id}};
+        //        var type = 'product';
+        //        var qty= document.getElementById('product-quantity').value;
+
+        //         $.ajax({
+        //             url: "{{ url('fetch-code-list-account') }}",
+        //             type: "post",
+        //             data: {
+        //                 _token: '{{ csrf_token() }}',
+        //                 id: id,
+        //                 type: type,
+        //                 quantity:qty
+        //             },
+        //             dataType: 'json',
+        //             success: function(data) {
+        //                 console.log(result);
+        //                 // if (result != 0) {
+        //                 //     $('#code_div').removeClass('d-none');
+        //                 //     $("#code").val(result.code);
+        //                 // } else {
+        //                 //     $('#code_div').addClass('d-none');
+
+        //                 // }
+
+
+
+        //             }
+        //         });
+        //     });
+        // });
       </script>
 @endsection
 

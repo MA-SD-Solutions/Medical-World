@@ -20,6 +20,44 @@
                                     <h6 class="fw-normal mb-0 text-black"><i class="bi bi-cart4 me-2"></i>Order Summary</h6>
                                   </div>
                                   <div  id="parentCheck">
+                                    {{-- @foreach ($carts as $cart )
+                                    <div class="card rounded-3 mb-4">
+                                        <div class="card-body py-4">
+                                        <div class="row d-flex justify-content-between align-items-center">
+                                          <div class="col-md-2 col-lg-2 col-xl-2">
+                                            <img
+                                              src="${product.image}"
+                                              class="img-fluid rounded-3">
+                                          </div>
+                                          <div class="col-md-3 card-info col-lg-3 col-xl-3">
+                                            <p class="fw-normal mb-2">
+                                            </p>
+                                          </div>
+                                          <div class="col-md-3 card-info col-lg-3 col-xl-2 d-flex">
+                                            <button class="btn btn-link px-2"
+                                              onclick=" minusOne(this)">
+                                              <i class="bi bi-dash-lg"></i>
+                                            </button>
+
+                                            <input id="0"  min="0" name="quantity" value="${product.quantity}" type="number"
+                                              class="form-control form-control-sm quantity-input card-info" style="width:55px;" onchange="quantityChange(this)" min="1"/>
+
+                                            <button class="btn btn-link px-2 card-info"
+                                              onclick="plusOne(this)">
+                                              <i class="bi bi-plus"></i>
+                                            </button>
+                                          </div>
+                                          <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1 card-info">
+                                              <span class="d-inline">$</span> <p class="mb-0 item-price d-inline ">20</p>
+                                          </div>
+                                          <div class="col-md-1 col-lg-1 col-xl-1 text-end card-info">
+                                            <button class="text-danger border-0 bg-transparent" onclick="removeItem(this,${product.id})"><i class="bi bi-trash3"></i></button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    @endforeach --}}
+
                                   </div>
                                   <hr>
                                 </div>
@@ -57,8 +95,8 @@
                                     <p class="me-5">{{$user->phone}}</p>
                                 </div>
                                 <div class="d-flex justify-content-between px-5">
-                                    <span>Date</span>
-                                    <p class="me-5">22/3/2023</p>
+                                    <span>Arrived after</span>
+                                    <p class="me-5"> 2-4 days</p>
                                 </div>
                                </div>
                             </div>
@@ -205,7 +243,8 @@
 
             const cartTableBody = document.getElementById('parentCheck');
             cart.products.forEach((product) => {
-                cartTableBody.innerHTML += `<div class="card rounded-3 mb-4">
+                cartTableBody.innerHTML += `
+                <div class="card rounded-3 mb-4">
                                       <div class="card-body py-4">
                                       <div class="row d-flex justify-content-between align-items-center">
                                         <div class="col-md-2 col-lg-2 col-xl-2">
@@ -239,7 +278,8 @@
                                         </div>
                                       </div>
                                     </div>
-                                    </div>`
+                                    </div>
+                                    `
             });
          }
 
