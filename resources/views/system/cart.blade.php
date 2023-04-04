@@ -20,17 +20,36 @@
                                     <h6 class="fw-normal mb-0 text-black"><i class="bi bi-cart4 me-2"></i>Order Summary</h6>
                                   </div>
                                   <div  id="parentCheck">
-                                    {{-- @foreach ($carts as $cart )
+                                    @foreach ($carts as $cart )
                                     <div class="card rounded-3 mb-4">
                                         <div class="card-body py-4">
                                         <div class="row d-flex justify-content-between align-items-center">
                                           <div class="col-md-2 col-lg-2 col-xl-2">
                                             <img
-                                              src="${product.image}"
+                                              src="
+
+                                                @if (($cart->offers->isNotEmpty()))
+                                                    {{$cart->offers[0]->getFirstMediaUrl('offer_image')}}
+                                                @elseif (($cart->products->isNotEmpty()))
+                                                    {{$cart->products[0]->getFirstMediaUrl('product_image')}}
+                                                @elseif (($cart->services->isNotEmpty()))
+                                                    {{$cart->services[0]->getFirstMediaUrl('service_image')}}
+                                                @endif
+
+                                              "
                                               class="img-fluid rounded-3">
                                           </div>
                                           <div class="col-md-3 card-info col-lg-3 col-xl-3">
                                             <p class="fw-normal mb-2">
+
+                                                @if (($cart->offers->isNotEmpty()))
+                                                    {{$cart->offers[0]->name}}
+                                                @elseif (($cart->products->isNotEmpty()))
+                                                    {{$cart->products[0]->name}}
+                                                @elseif (($cart->services->isNotEmpty()))
+                                                    {{$cart->services[0]->name}}
+                                                @endif
+
                                             </p>
                                           </div>
                                           <div class="col-md-3 card-info col-lg-3 col-xl-2 d-flex">
@@ -39,7 +58,7 @@
                                               <i class="bi bi-dash-lg"></i>
                                             </button>
 
-                                            <input id="0"  min="0" name="quantity" value="${product.quantity}" type="number"
+                                            <input id="0"  min="0" name="quantity" value="{{$cart->quantity}}" type="number"
                                               class="form-control form-control-sm quantity-input card-info" style="width:55px;" onchange="quantityChange(this)" min="1"/>
 
                                             <button class="btn btn-link px-2 card-info"
@@ -48,15 +67,23 @@
                                             </button>
                                           </div>
                                           <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1 card-info">
-                                              <span class="d-inline">$</span> <p class="mb-0 item-price d-inline ">20</p>
+                                              <span class="d-inline">$</span> <p class="mb-0 item-price d-inline ">
+                                                @if (($cart->offers->isNotEmpty()))
+                                                {{$cart->offers[0]->value}}
+                                            @elseif (($cart->products->isNotEmpty()))
+                                                {{$cart->products[0]->price}}
+                                            @elseif (($cart->services->isNotEmpty()))
+                                                {{$cart->services[0]->price}}
+                                            @endif</p>
                                           </div>
                                           <div class="col-md-1 col-lg-1 col-xl-1 text-end card-info">
-                                            <button class="text-danger border-0 bg-transparent" onclick="removeItem(this,${product.id})"><i class="bi bi-trash3"></i></button>
+                                            {{-- <button class="text-danger border-0 bg-transparent" onclick="removeItem(this,${product.id})"><i class="bi bi-trash3"></i></button> --}}
+                                            <a href="{{route('carts.destroy',$cart->id)}}" class="text-danger border-0 bg-transparent" ><i class="bi bi-trash3"></i></a>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
-                                    @endforeach --}}
+                                    @endforeach
 
                                   </div>
                                   <hr>
@@ -157,6 +184,8 @@
                                         </div>
                                   </div>
                         </div>
+                        <a href="{{route('bill.store')}}" class="w-100 rounded  btn btn-secondary primary-color p-3 mt-2  border-0 fw-bold">Proceed With Cash Delivery</a>
+
                     </div>
                 </div>
             </div>
@@ -165,7 +194,7 @@
 
     <script>
         window.onload = function() {
-            displayCart();
+            // displayCart();
             subTotalCalc();
         };
         function quantityChange(changedQuantity){
@@ -237,51 +266,51 @@
               localStorage.setItem('cart', JSON.stringify(cart));
         }
 
-        function displayCart() {
+        // function displayCart() {
 
-            let cart = JSON.parse(localStorage.getItem('cart'));
+        //     let cart = JSON.parse(localStorage.getItem('cart'));
 
-            const cartTableBody = document.getElementById('parentCheck');
-            cart.products.forEach((product) => {
-                cartTableBody.innerHTML += `
-                <div class="card rounded-3 mb-4">
-                                      <div class="card-body py-4">
-                                      <div class="row d-flex justify-content-between align-items-center">
-                                        <div class="col-md-2 col-lg-2 col-xl-2">
-                                          <img
-                                            src="${product.image}"
-                                            class="img-fluid rounded-3">
-                                        </div>
-                                        <div class="col-md-3 card-info col-lg-3 col-xl-3">
-                                          <p class="fw-normal mb-2">${product.name}
-                                          </p>
-                                        </div>
-                                        <div class="col-md-3 card-info col-lg-3 col-xl-2 d-flex">
-                                          <button class="btn btn-link px-2"
-                                            onclick=" minusOne(this)">
-                                            <i class="bi bi-dash-lg"></i>
-                                          </button>
+        //     const cartTableBody = document.getElementById('parentCheck');
+        //     cart.products.forEach((product) => {
+        //         cartTableBody.innerHTML += `
+        //         <div class="card rounded-3 mb-4">
+        //                               <div class="card-body py-4">
+        //                               <div class="row d-flex justify-content-between align-items-center">
+        //                                 <div class="col-md-2 col-lg-2 col-xl-2">
+        //                                   <img
+        //                                     src="${product.image}"
+        //                                     class="img-fluid rounded-3">
+        //                                 </div>
+        //                                 <div class="col-md-3 card-info col-lg-3 col-xl-3">
+        //                                   <p class="fw-normal mb-2">${product.name}
+        //                                   </p>
+        //                                 </div>
+        //                                 <div class="col-md-3 card-info col-lg-3 col-xl-2 d-flex">
+        //                                   <button class="btn btn-link px-2"
+        //                                     onclick=" minusOne(this)">
+        //                                     <i class="bi bi-dash-lg"></i>
+        //                                   </button>
 
-                                          <input id="0"  min="0" name="quantity" value="${product.quantity}" type="number"
-                                            class="form-control form-control-sm quantity-input card-info" style="width:55px;" onchange="quantityChange(this)" min="1"/>
+        //                                   <input id="0"  min="0" name="quantity" value="${product.quantity}" type="number"
+        //                                     class="form-control form-control-sm quantity-input card-info" style="width:55px;" onchange="quantityChange(this)" min="1"/>
 
-                                          <button class="btn btn-link px-2 card-info"
-                                            onclick="plusOne(this)">
-                                            <i class="bi bi-plus"></i>
-                                          </button>
-                                        </div>
-                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1 card-info">
-                                            <span class="d-inline">$</span> <p class="mb-0 item-price d-inline ">${product.price}</p>
-                                        </div>
-                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end card-info">
-                                          <button class="text-danger border-0 bg-transparent" onclick="removeItem(this,${product.id})"><i class="bi bi-trash3"></i></button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    </div>
-                                    `
-            });
-         }
+        //                                   <button class="btn btn-link px-2 card-info"
+        //                                     onclick="plusOne(this)">
+        //                                     <i class="bi bi-plus"></i>
+        //                                   </button>
+        //                                 </div>
+        //                                 <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1 card-info">
+        //                                     <span class="d-inline">$</span> <p class="mb-0 item-price d-inline ">${product.price}</p>
+        //                                 </div>
+        //                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end card-info">
+        //                                   <button class="text-danger border-0 bg-transparent" onclick="removeItem(this,${product.id})"><i class="bi bi-trash3"></i></button>
+        //                                 </div>
+        //                               </div>
+        //                             </div>
+        //                             </div>
+        //                             `
+        //     });
+        //  }
 
 
       </script>

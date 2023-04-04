@@ -17,7 +17,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $carts = Cart::with('users')->with('products')->orderBy('created_at')->paginate(10);
+        $carts = Cart::with('users')->with('products')->with('offers')->with('services')->orderBy('created_at')->paginate(10);
         return view('Cart.index' , compact('carts'));
     }
 
@@ -58,8 +58,6 @@ class CartController extends Controller
                 'offer_id' => $offerId,
                 'user_id' => auth()->user()->id,
                 'type' => $request->type,
-                'name' => $request->name,
-                'price' => $request->price,
                 'quantity' => $request->quantity,
                 'created_by' => auth()->user()->id
             ]);
@@ -121,7 +119,7 @@ class CartController extends Controller
               return redirect()->route('carts.index')->with('error' , 'Cart Product Not Found');
             }else{
                 $cart_id->delete();
-                return redirect()->route('carts.index')->with('success' , 'Cart Product Deleted Successfully');
+                return redirect()->back()->with('success' , 'Cart Product Deleted Successfully');
             }
         }catch(Exception $ex){
             return redirect()->back()->with('error' , $ex->getMessage());

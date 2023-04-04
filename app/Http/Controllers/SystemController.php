@@ -52,7 +52,8 @@ class SystemController extends Controller
     }
 
     public function cart(){
-        $carts = Cart::where('user_id' , auth()->user()->id )->get();
+        $carts = Cart::with('products')->with('offers')->with('services')->where('user_id' , auth()->user()->id )->get();
+        // dd($carts[0]->products);
         $user = User::findOrFail(auth()->user()->id);
         return view('system.cart' , compact('carts' , 'user'));
     }
@@ -71,4 +72,5 @@ class SystemController extends Controller
         return view('system.gallery' , compact('gallery'));
     }
 
+   
 }

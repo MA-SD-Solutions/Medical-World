@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Administration\RoleController;
 use App\Http\Controllers\Administration\PermissionController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ImageController;
@@ -116,7 +117,10 @@ Route::get('login', [AuthenticatedSessionController::class, 'create'])
     Route::get('carts',[CartController::class,'index'])->name('carts.index');
     // Route::get('create_cart',[CartController::class,'create'])->name('carts.create');
     Route::post('store_cart',[CartController::class,'store'])->name('carts.store');
-    Route::delete('Cart_destroy_image/{id}',[CartController::class,'destroy'])->name('carts.destroy');
+    Route::get('Cart_destroy/{id}',[CartController::class,'destroy'])->name('carts.destroy');
+
+    //bill routes
+    Route::get('bill',[BillController::class,'store'])->name('bill.store');
 
     //Contact routes
     Route::post('createContact',[ContactController::class,'store'])->name('contact.create');
