@@ -286,6 +286,7 @@
                     dataType: 'json',
                     success: function(data) {
                         console.log(data);
+                        // Session::flash('success', 'Updated Successfully!!);
                         window.location.href = "{{route('system.service')}}";
                         // if (result != 0) {
                         //     $('#code_div').removeClass('d-none');

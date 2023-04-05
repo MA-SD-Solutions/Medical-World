@@ -134,6 +134,10 @@ Route::get('login', [AuthenticatedSessionController::class, 'create'])
     // Route::get('offers',[OfferController::class,'edit'])->name('offers.edit');
     // Route::post('offers',[OfferController::class,'update'])->name('offers.update');
     Route::delete('delete_offer/{id}',[OfferController::class,'destroy'])->name('offers.destroy');
+
+    //bills routes 
+    Route::get('bills',[BillController::class,'index'])->name('bills.index');
+    Route::get('show_bill/{id}',[BillController::class,'show'])->name('bills.show');
 });
 
 Route::get('checkout',[CartController::class,'checkout'])->name('carts.checkout');

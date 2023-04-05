@@ -9,4 +9,6 @@ class Bill_details extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    
 }

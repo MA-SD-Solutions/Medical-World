@@ -192,6 +192,15 @@
                         </li>
 
                         <li class="nav-item">
+                            <a href="{{route('bills.index')}}" class="nav-link {{ request()->is('bills') ? 'active':'' }}">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>
+                                    Bills
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a href="{{route('contact.index')}}" class="nav-link {{ request()->is('contact') ? 'active':'' }}">
                                 <i class="nav-icon fas fa-envelope"></i>
                                 <p>

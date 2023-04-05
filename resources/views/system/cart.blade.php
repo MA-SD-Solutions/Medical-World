@@ -78,7 +78,7 @@
                                           </div>
                                           <div class="col-md-1 col-lg-1 col-xl-1 text-end card-info">
                                             {{-- <button class="text-danger border-0 bg-transparent" onclick="removeItem(this,${product.id})"><i class="bi bi-trash3"></i></button> --}}
-                                            <a href="{{route('carts.destroy',$cart->id)}}" class="text-danger border-0 bg-transparent" ><i class="bi bi-trash3"></i></a>
+                                            <a href="{{route('carts.destroy',$cart->id)}}" onclick="removeItem(this,{{$cart->id}})" class="text-danger border-0 bg-transparent" ><i class="bi bi-trash3"></i></a>
                                           </div>
                                         </div>
                                       </div>

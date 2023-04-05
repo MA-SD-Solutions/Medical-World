@@ -198,7 +198,7 @@
 
                                 </div>
                                 <div class="card-body position-relative">
-                                  <a href="" class="text-reset text-decoration-none">
+                                  <a href="{{route('system.singleProduct' , $product->id)}}" class="text-reset text-decoration-none">
                                     <h5 class="card-title mb-3">{{$product->name}}</h5>
                                   </a>
                                   <div class="d-flex justify-content-center mb-2">

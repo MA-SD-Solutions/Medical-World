@@ -211,3 +211,21 @@ Breadcrumbs::for('offers.show', function (BreadcrumbTrail $trail , $id): void {
     $trail->parent('offers.index');
     $trail->push('show Offer', route('offers.show', $id));
 });
+
+
+//============ bill =======================
+
+Breadcrumbs::for('bills.index', function (BreadcrumbTrail $trail): void {
+    $trail->parent('dashboard');
+    $trail->push('Bills', route('bills.index'));
+});
+
+// Breadcrumbs::for('offers.create', function (BreadcrumbTrail $trail): void {
+//     $trail->parent('dashboard');
+//     $trail->push('Offers', route('offers.create'));
+// });
+
+Breadcrumbs::for('bills.show', function (BreadcrumbTrail $trail , $id): void {
+    $trail->parent('bills.index');
+    $trail->push('show Offer', route('bills.show', $id));
+});

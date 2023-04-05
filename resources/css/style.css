@@ -16,7 +16,7 @@
     }
     .specialties {
         position: absolute !important;
-        bottom: -86px !important;
+        bottom: -82px !important;
     }
     .fs-7 {
         font-size: 0.5rem !important;
@@ -55,6 +55,12 @@
     }
     .about-doc {
         padding: 10px !important;
+    }
+    .specialty-title {
+        display: none !important;
+    }
+    .specialties-container {
+        height: 94px !important;
     }
 }
 
@@ -73,7 +79,7 @@
     }
     .specialties {
         position: absolute !important;
-        bottom: -86px !important;
+        bottom: -82px !important;
     }
     .fs-7 {
         font-size: 0.5rem !important;
@@ -112,6 +118,12 @@
     }
     .about-doc {
         padding: 10px !important;
+    }
+    .specialty-title {
+        display: none !important;
+    }
+    .specialties-container {
+        height: 95px !important;
     }
 }
 
@@ -127,7 +139,7 @@
     }
     .specialties {
         position: absolute !important;
-        bottom: -86px !important;
+        bottom: -82px !important;
     }
     .fs-7 {
         font-size: 0.5rem !important;
@@ -166,6 +178,12 @@
     }
     .about-doc {
         padding: 10px !important;
+    }
+    .specialty-title {
+        display: none !important;
+    }
+    .specialties-container {
+        height: 94px !important;
     }
 }
 
@@ -822,6 +840,27 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #106668 !important;
+    color: white !important;
+}
+
+.nav-pills .nav-link {
+    color: #01282A !important;
+}
+
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: white;
+    position: absolute;
+    bottom: 44px;
+    right: 99px !important;
 }
 
 

@@ -412,6 +412,8 @@
           };
 
           if (cart.products.length == 0) {
+            var id = product.id;
+            var qty= document.getElementById('product-quantity').value;
             cart.products.push(product);
           } else {
             for (let i = 0; i < cart.products.length; i++) {
@@ -425,7 +427,14 @@
                 var type = 'product';
                 var qty= document.getElementById('product-quantity').value;
 
-                $.ajax({
+
+              } else {
+                console.log("hereeeeeee");
+                cart.products.push(product);
+              }
+            }
+          }
+          $.ajax({
                     url: "{{route('carts.store')}}",
                     type: "post",
                     data: {
@@ -450,12 +459,6 @@
                         console.log(data);
                     }
                 });
-              } else {
-                console.log("hereeeeeee");
-                cart.products.push(product);
-              }
-            }
-          }
           localStorage.setItem("cart", JSON.stringify(cart));
         }
 

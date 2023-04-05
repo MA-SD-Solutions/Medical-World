@@ -18,7 +18,9 @@ class BillController extends Controller
      */
     public function index()
     {
-        //
+        $bills = Bill::with('billDetails')->paginate(10);
+        // dd($bills);
+        return view('bills.index' , compact('bills'));
     }
 
     /**
@@ -86,7 +88,7 @@ class BillController extends Controller
             } elseif ($cart->type == 'offer') {
                 $name = $cart->offers[0]->name;
                 $price = $cart->offers[0]->price;
-                $quantity = $cart->offers[0]->value;
+                $quantity = $cart->offers[0]->quantity;
                 $offer_id = $cart->offer_id;
                 // $total_price += $price;
             }
@@ -122,6 +124,9 @@ class BillController extends Controller
     public function show($id)
     {
         //
+        $bills = Bill_details::where('bill', $id)->get();
+        // dd($bills);
+        return view('bills.show' , compact('bills'));
     }
 
     /**

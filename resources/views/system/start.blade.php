@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{asset('asset/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('links')
+
 </head>
 
 <body class="">
@@ -66,7 +67,7 @@
         </div>
 
         <button class="btn secondary-button mt-md-5 mb-md-2 me-md-4" type="button">Book Now</button>
-        <a class="navbar-brand mt-md-5 mb-md-2" href="{{route('system.cart')}}">
+        <a class="navbar-brand mt-md-5 mb-md-2 position-relative" href="{{route('system.cart')}}">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart nav-icon" viewBox="0 0 16 16">
               <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
             </svg>
@@ -81,6 +82,8 @@
         </a>
     </div>
 </nav>
+
+
 
 <!--bottom header-->
 <div class="bottom-header text-white fs-7 fw-lighter nav-color text-center pt-1">
@@ -355,20 +358,20 @@
     <script src="{{asset('asset/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('asset/dist/js/scripts.js')}}"></script>
 
-
-    {{-- <script>
-          window.onload = function() {
+    <script>
+        $(document).ready(function () {
             cartCounter();
-        };
-      function cartCounter(){
-        let totalQuantity = JSON.parse(localStorage.getItem('totalQuantity'));
-        console.log(totalQuantity);
-        let counter = document.getElementById("counter");
-        counter.innerHTML = totalQuantity;
+        });
+        
+        function cartCounter(){
+            let totalQuantity = JSON.parse(localStorage.getItem('totalQuantity'));
+            console.log(totalQuantity);
+            let counter = document.getElementById("counter");
+            counter.innerHTML = totalQuantity;
+        }
 
-      }
+    </script>
 
-    </script> --}}
 
 </body>
 

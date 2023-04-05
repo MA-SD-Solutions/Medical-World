@@ -42,25 +42,36 @@ class CartController extends Controller
         $productId = null;
         $serviceId = null;
         $offerId = null;
+        $old = null;
         try{
             if($request->product_id){
                 $productId=$request->product_id;
+                $old = Cart::where('product_id',$productId)->first();
             }
             if($request->service_id){
                 $serviceId = $request->service_id;
+                $old = Cart::where('service_id',$serviceId)->first();
             }
             if($request->offer_id){
                 $offerId = $request->offer_id;
+                $old = Cart::where('offer_id',$offerId)->first();
             }
-            $cart = Cart::create([
-                'product_id' => $productId,
-                'service_id' => $serviceId,
-                'offer_id' => $offerId,
-                'user_id' => auth()->user()->id,
-                'type' => $request->type,
-                'quantity' => $request->quantity,
-                'created_by' => auth()->user()->id
-            ]);
+
+            if($old){
+                $old->quantity += $request->quantity;
+                $old->save();
+            }else{
+                $cart = Cart::create([
+                    'product_id' => $productId,
+                    'service_id' => $serviceId,
+                    'offer_id' => $offerId,
+                    'user_id' => auth()->user()->id,
+                    'type' => $request->type,
+                    'quantity' => $request->quantity,
+                    'created_by' => auth()->user()->id
+                ]);
+            }
+
 
             // return redirect()->route('carts.index')->with('success' , 'Cart Added Successfully');
             return response()->json(['success ' => 'Added To Cart Successfully'], 200);
