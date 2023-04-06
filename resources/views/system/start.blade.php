@@ -57,6 +57,9 @@
                         <a class="nav-link " href="{{route('system.offers')}}">Offers</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link " href="{{route('system.blogs')}}">Blogs</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link " href="{{route('system.ContactUs')}}">Contact</a>
                     </li>
                 </ul>

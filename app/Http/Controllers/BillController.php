@@ -49,7 +49,6 @@ class BillController extends Controller
 
         $name = '';
         $price = '';
-        $quantity = '';
 
         $total_price = 0;
         foreach ($carts as $cart) {
@@ -68,7 +67,7 @@ class BillController extends Controller
             'user_id'=> auth()->user()->id,
             'created_by'=> auth()->user()->id,
         ]);
-
+        // dd($carts);
         foreach ($carts as $cart) {
             $product_id = null;
             $service_id = null;
@@ -76,28 +75,27 @@ class BillController extends Controller
             if ($cart->type == 'product') {
                 $name = $cart->products[0]->name;
                 $price = $cart->products[0]->price;
-                $quantity = $cart->products[0]->quantity;
                 $product_id = $cart->product_id;
                 // $total_price += $price;
             } elseif ($cart->type == 'service') {
                 $name = $cart->services[0]->name;
                 $price = $cart->services[0]->price;
-                $quantity = $cart->services[0]->quantity;
                 $service_id = $cart->service_id;
                 // $total_price += $price;
             } elseif ($cart->type == 'offer') {
                 $name = $cart->offers[0]->name;
-                $price = $cart->offers[0]->price;
-                $quantity = $cart->offers[0]->quantity;
+                $price = $cart->offers[0]->value;
                 $offer_id = $cart->offer_id;
                 // $total_price += $price;
+            }else{
+                return redirect()->route('system.cart')->with('error' , 'Type Is not Exist');
             }
 
             Bill_details::create([
                 'type' => $cart->type,
                 'name' => $name,
                 'price' => $price,
-                'quantity' => $quantity,
+                'quantity' => $cart->quantity,
                 'product_id' => $product_id,
                 'service_id' => $service_id,
                 'offer_id' => $offer_id,

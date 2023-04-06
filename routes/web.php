@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Administration\RoleController;
 use App\Http\Controllers\Administration\PermissionController;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ImageController;
@@ -51,6 +52,8 @@ Route::group(['middleware'=>['auth' , 'verified']], function () {
     Route::get('/contact', [SystemController::class , 'ContactUs'])->name('system.ContactUs');
     Route::get('/offersPage', [SystemController::class , 'offers'])->name('system.offers');
     Route::get('/galleryPage', [SystemController::class , 'gallery'])->name('system.gallery');
+    Route::get('/blogsPage', [SystemController::class , 'blogs'])->name('system.blogs');
+    Route::get('/blog_details_page/{id}', [SystemController::class , 'blogDetails'])->name('system.blogDetails');
 
 });
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
@@ -138,6 +141,16 @@ Route::get('login', [AuthenticatedSessionController::class, 'create'])
     //bills routes 
     Route::get('bills',[BillController::class,'index'])->name('bills.index');
     Route::get('show_bill/{id}',[BillController::class,'show'])->name('bills.show');
+
+    //blogs routes
+    Route::get('blogs',[BlogsController::class,'index'])->name('blogs.index');
+    Route::get('create_blog',[BlogsController::class,'create'])->name('blogs.create');
+    Route::post('store_blog',[BlogsController::class,'store'])->name('blogs.store');
+    Route::get('show_blog/{id}',[BlogsController::class,'show'])->name('blogs.show');
+    Route::get('edit_blog/{id}',[BlogsController::class,'edit'])->name('blogs.edit');
+    Route::put('update_blog/{id}',[BlogsController::class,'update'])->name('blogs.update');
+    Route::delete('destroy_blog/{id}',[BlogsController::class,'destroy'])->name('blogs.destroy');
+
 });
 
 Route::get('checkout',[CartController::class,'checkout'])->name('carts.checkout');

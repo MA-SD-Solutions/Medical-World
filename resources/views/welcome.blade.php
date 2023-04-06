@@ -126,6 +126,14 @@
                                         </p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('blogs.index')}}" class="nav-link {{ request()->is('blogs')|| request()->is('blogs/*') ? 'active':'' }}">
+                                        <i class="nav-icon fas fa-user-lock"></i>
+                                        <p>
+                                            Blogs
+                                        </p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">

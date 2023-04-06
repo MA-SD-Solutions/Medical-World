@@ -229,3 +229,25 @@ Breadcrumbs::for('bills.show', function (BreadcrumbTrail $trail , $id): void {
     $trail->parent('bills.index');
     $trail->push('show Offer', route('bills.show', $id));
 });
+
+//============ blogs =======================
+
+Breadcrumbs::for('blogs.index', function (BreadcrumbTrail $trail): void {
+    $trail->parent('dashboard');
+    $trail->push('Blogs', route('blogs.index'));
+});
+
+Breadcrumbs::for('blogs.create', function (BreadcrumbTrail $trail): void {
+    $trail->parent('dashboard');
+    $trail->push('Create Blog', route('blogs.create'));
+});
+
+Breadcrumbs::for('blogs.show', function (BreadcrumbTrail $trail , $id): void {
+    $trail->parent('blogs.index');
+    $trail->push('Show Blog', route('blogs.show', $id));
+});
+
+Breadcrumbs::for('blogs.edit', function (BreadcrumbTrail $trail , $id): void {
+    $trail->parent('blogs.index');
+    $trail->push('Edit Blog', route('blogs.edit', $id));
+});

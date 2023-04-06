@@ -52,6 +52,8 @@
 
                                             </p>
                                           </div>
+                                          @if (($cart->products->isNotEmpty()))
+                                          
                                           <div class="col-md-3 card-info col-lg-3 col-xl-2 d-flex">
                                             <button class="btn btn-link px-2"
                                               onclick=" minusOne(this)">
@@ -66,6 +68,24 @@
                                               <i class="bi bi-plus"></i>
                                             </button>
                                           </div>
+
+                                          @else
+                                          <div class="col-md-3 card-info col-lg-3 col-xl-2 d-flex">
+                                            <button class="btn btn-link px-2"
+                                              onclick=" minusOne(this)" disabled>
+                                              <i class="bi bi-dash-lg"></i>
+                                            </button>
+
+                                            <input id="0"  min="0" name="quantity" value="{{$cart->quantity}}" type="number" disabled
+                                              class="form-control form-control-sm quantity-input card-info" style="width:55px;" onchange="quantityChange(this)" min="1"/>
+
+                                            <button class="btn btn-link px-2 card-info"
+                                              onclick="plusOne(this)" disabled>
+                                              <i class="bi bi-plus"></i>
+                                            </button>
+                                          </div>
+                                          @endif
+                                          
                                           <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1 card-info">
                                               <span class="d-inline">$</span> <p class="mb-0 item-price d-inline ">
                                                 @if (($cart->offers->isNotEmpty()))

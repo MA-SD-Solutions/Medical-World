@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Cart;
 use App\Models\Doctor;
 use App\Models\Image;
@@ -72,5 +73,14 @@ class SystemController extends Controller
         return view('system.gallery' , compact('gallery'));
     }
 
+    public function blogs(){
+        $blogs = Blog::get();
+        return view('system.blogs' , compact('blogs'));
+    }
    
+    public function blogDetails($id){
+        $blog = Blog::where('id',$id)->first();
+        // dd($blog);
+        return view('system.blog-details', compact('blog'));
+    }
 }
