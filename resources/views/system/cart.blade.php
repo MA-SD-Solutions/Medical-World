@@ -204,7 +204,7 @@
                                         </div>
                                   </div>
                         </div>
-                        <a href="{{route('bill.store')}}" class="w-100 rounded  btn btn-secondary primary-color p-3 mt-2  border-0 fw-bold">Proceed With Cash Delivery</a>
+                        <a href="{{route('bill.store')}}" onclick="removeFromLocalStorage()" class="w-100 rounded  btn btn-secondary primary-color p-3 mt-2  border-0 fw-bold">Proceed With Cash Delivery</a>
 
                     </div>
                 </div>

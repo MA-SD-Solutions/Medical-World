@@ -140,7 +140,7 @@
     </div>
 </div>
 
-<div class="product pb-5" id="0">
+{{-- <div class="product pb-5" id="0">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-10 col-sm-12">
@@ -149,7 +149,7 @@
                     <div class="row py-2 shadow-5">
                         <div class="col-12">
                             <div class="lightbox ">
-                                <img src="{{$blog->getFirstMediaUrl('blog_image') }}" alt="Gallery image 1" class="ecommerce-gallery-main-img rounded w-100" height="400" id="expandedImg" />
+                                <img src="" alt="Gallery image 1" class="ecommerce-gallery-main-img rounded w-100" height="400" id="expandedImg" />
                             </div>
                         </div>
                     </div>
@@ -181,7 +181,7 @@
                     <h3 class="d-inline pt-3">Description</h3>
                     <hr />
                     <p>
-                    {{$blog->description}}
+                    {!!$blog->description!!}
                     </p>
 
 
@@ -190,7 +190,86 @@
         </div>
 
     </div>
-</div>
+</div> --}}
+
+<div class="product pb-5" id="0">
+    <div class="container">
+      <div class="row">
+        <div class="col-3 py-5">
+            <div class="product-category pt-3 blog-details rounded">
+                <strong>Post Details</strong>
+                <div class="mt-4 mb-2">
+                  <small>Author</small>
+                  <p>{{$blog->users->name}}</p>
+                  <hr>
+                  <small>Reading Time</small>
+                  <p>10 Minutes</p>
+                </div>
+            </div>
+            <div class="product-category pt-3 blog-share mt-3 rounded">
+              <strong>Related Posts</strong>
+              <hr>
+              <div class="mt-4 mb-2 d-flex ps-2">
+                <div class="img pe-1">
+                  <img src="{{asset('asset/dist/img/cosmetic.jpg')}}" class="rounded" width="50" height="50" alt="">
+                </div>
+                <div class="details ps-2">
+                  <p><a href="" class="text-decoration-none text-muted"> <small>How to buy anything from our application </small> </a></p>
+                </div>
+              </div>
+              <div class="mt-4 mb-2 d-flex ps-2">
+                <div class="img pe-1">
+                  <img src="{{asset('asset/dist/img/cosmetic.jpg')}}" class="rounded" width="50" height="50" alt="">
+                </div>
+                <div class="details ps-2">
+                  <p><a href="" class="text-decoration-none text-muted"> <small>How to buy anything from our application </small> </a></p>
+                </div>
+              </div>
+              <div class="mt-4 mb-2 d-flex ps-2">
+                <div class="img pe-1">
+                  <img src="{{asset('asset/dist/img/cosmetic.jpg')}}" class="rounded" width="50" height="50" alt="">
+                </div>
+                <div class="details ps-2">
+                  <p><a href="" class="text-decoration-none text-muted"> <small>How to buy anything from our application </small> </a></p>
+                </div>
+              </div>
+              <div class="mt-4 mb-2 d-flex ps-2">
+                <div class="img pe-1">
+                  <img src="{{asset('asset/dist/img/cosmetic.jpg')}}" class="rounded" width="50" height="50" alt="">
+                </div>
+                <div class="details ps-2">
+                  <p><a href="" class="text-decoration-none text-muted"> <small>How to buy anything from our application </small> </a></p>
+                </div>
+              </div>
+          </div>                 
+        </div>
+        <div class="col-lg-9 col-sm-12">
+          <h3 class="mb-3 light-primary-color w-75"  id="blog-name">{{$blog->title}}</h3>
+          <div class="ecommerce-gallery" data-mdb-zoom-effect="true" data-mdb-auto-height="true">
+            <div class="row py-2 shadow-5">
+              <div class="col-12">
+                <div class="lightbox ">
+                  <img
+                    src="{{$blog->getFirstMediaUrl('blog_image') }}"
+                    alt="Gallery image 1"
+                    class="ecommerce-gallery-main-img rounded w-100"
+                    height="400"
+                    id="expandedImg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        <div class="product-details py-3">
+          
+            {!!$blog->description!!}
+          
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 

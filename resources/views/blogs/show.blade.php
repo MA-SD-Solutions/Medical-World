@@ -25,7 +25,7 @@
 
                             <div class=" row">
                                 <label class="col-sm-5 col-form-label">Description :</label>
-                                <label class="col-sm-7 col-form-label">{{ $blog->description ?? '-' }} </label>
+                                <label class="col-sm-7 col-form-label">{!!$blog->description!!} </label>
                             </div>
                             @if ($blog->getFirstMediaUrl('blog_image'))
                             <div class=" row">

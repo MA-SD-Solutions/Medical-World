@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bill;
 use App\Models\Blog;
 use App\Models\Cart;
 use App\Models\Doctor;
@@ -10,6 +11,7 @@ use App\Models\Offer;
 use App\Models\Product;
 use App\Models\Service;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class SystemController extends Controller
@@ -82,5 +84,32 @@ class SystemController extends Controller
         $blog = Blog::where('id',$id)->first();
         // dd($blog);
         return view('system.blog-details', compact('blog'));
+    }
+
+    public function profile(){
+        $user = User::find(auth()->user()->id)->first();
+        $orders = Bill::with('billDetails')->where('user_id' , auth()->user()->id)->get();
+        // dd($orders);
+        return view('system.profile' , compact('user', 'orders'));
+    }
+
+    public function edit_profile(Request $request){
+        try{
+            // dd($request);
+    
+            $user = User::find(auth()->user()->id);
+            $user->update($request->all());
+
+            return redirect()->route('system.profile')->with('success' , 'Profile Edited Successfully');
+        }catch(Exception $ex){
+            return redirect()->back()->with('error' , $ex->getMessage());
+        }
+    }
+
+    public function changeProfileImage(Request $request){
+        $user = User::find(auth()->user()->id);
+        $user->addMediaFromRequest('profile_image')->toMediaCollection('profile_image');
+
+        return redirect()->back()->with('success' , 'Image changed Successfully');
     }
 }

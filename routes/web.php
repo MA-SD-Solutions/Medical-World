@@ -54,6 +54,9 @@ Route::group(['middleware'=>['auth' , 'verified']], function () {
     Route::get('/galleryPage', [SystemController::class , 'gallery'])->name('system.gallery');
     Route::get('/blogsPage', [SystemController::class , 'blogs'])->name('system.blogs');
     Route::get('/blog_details_page/{id}', [SystemController::class , 'blogDetails'])->name('system.blogDetails');
+    Route::get('/profile_page', [SystemController::class , 'profile'])->name('system.profile');
+    Route::post('/edit_profile_page', [SystemController::class , 'edit_profile'])->name('system.edit_profile');
+    Route::post('/edit_profile_image', [SystemController::class , 'changeProfileImage'])->name('system.changeProfileImage');
 
 });
 Route::get('login', [AuthenticatedSessionController::class, 'create'])

@@ -798,6 +798,92 @@ input[type=range]::-webkit-slider-thumb::before {
     font-weight: 600;
 }
 
+
+/* .profile-pic {
+    width: 128px;
+    height: 128px;
+    display: inline-block;
+} */
+
+
+/* .file-upload {
+    display: none;
+} */
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #adb5bd;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+    background: #6c757d;
+}
+
+
+/* .circle {
+    border-radius: 100% !important;
+    overflow: hidden;
+    width: 128px;
+    height: 128px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+} */
+
+
+/*
+.p-image {
+    position: absolute;
+    top: 100px;
+    right: 15px;
+    color: #666666;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.p-image:hover {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.upload-button {
+    font-size: 1.2em;
+}
+
+.upload-button:hover {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: #999;
+}
+
+.primary-upload-button {
+    background-color: #137A7C;
+    border: 1px solid #137A7C;
+    color: white;
+    padding: 6px 18px;
+}
+
+.primary-upload-button:hover {
+    background-color: rgba(7, 43, 44, 0.6901960784);
+    border: 1px solid rgba(7, 43, 44, 0.6901960784);
+    color: #137A7C;
+}
+
+*/
+
+.blog-details {
+    background-color: #01282A;
+    color: white;
+    padding: 6px 18px;
+    margin-top: 77px;
+}
+
+.blog-share {
+    padding: 6px 18px;
+    background-color: white;
+}
+
 textarea:focus,
 input[type=text]:focus,
 input[type=password]:focus,
@@ -1046,6 +1132,16 @@ right: 11% !important;
 
 /*# sourceMappingURL=style.css.map */
 p */p */s.map */p */ p */
+/*# sourceMappingURL=style.css.map */
+
+/*# sourceMappingURL=style.css.map */
+
+/*# sourceMappingURL=style.css.map */
+
+/*# sourceMappingURL=style.css.map */
+
+/*# sourceMappingURL=style.css.map */
+
 /*# sourceMappingURL=style.css.map */
 
 /*# sourceMappingURL=style.css.map */

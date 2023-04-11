@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('asset/dist/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('asset/plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('asset/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <x-head.tinymce-config/>
 </head>
 
 <body class="hold-transition sidebar-mini">

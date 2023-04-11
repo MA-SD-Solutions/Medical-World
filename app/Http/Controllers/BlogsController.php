@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Meta;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BlogsController extends Controller
 {
@@ -40,16 +42,30 @@ class BlogsController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request->value);
         try{
+            DB::beginTransaction();
             $blog = Blog::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'created_by' => auth()->user()->id,
             ]);
 
+            foreach($request->value as $value){
+                Meta::create([
+                    'key' => $request->key,
+                    'value' => $value,
+                    'blog_id' => $blog->id ,
+                    'created_by' => auth()->user()->id
+                ]);
+            }
+           
+
             if ($request->hasFile('blog_image')) {
                 $blog->addMediaFromRequest('blog_image')->toMediaCollection('blog_image');
             }
+
+            DB::commit();
             return redirect()->route('blogs.index')->with('success' , 'Blog Created Successfully');
         }catch(Exception $ex){
             return redirect()->back()->with('error' , $ex->getMessage());
